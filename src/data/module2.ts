@@ -1,0 +1,78 @@
+import type { Module } from '../types'
+
+export const module2: Module = {
+  id: 'module-2',
+  title: 'Contabilidad Analítica y Estado de Resultados',
+  subtitle: 'Cuenta de P&G, Márgenes y Centros de Beneficio',
+  description: 'Domina la cuenta de resultados desde la perspectiva analítica: diferencia entre contabilidad financiera y de gestión, interpreta márgenes, costes fijos/variables y estructura centros de beneficio.',
+  level: 'Básico',
+  icon: '📊',
+  color: 'linear-gradient(135deg, #065F46, #10B981)',
+  accentColor: '#10B981',
+  estimatedHours: 3,
+  lessons: [
+    {
+      id: 'l2-1',
+      title: 'Contabilidad Financiera vs. Contabilidad Analítica',
+      duration: 20,
+      sections: [
+        { type: 'paragraph', content: 'Existen dos grandes ramas de la contabilidad empresarial con objetivos y características distintas: la contabilidad financiera (obligatoria, externa) y la contabilidad analítica o de gestión (voluntaria, interna). Ambas son complementarias e imprescindibles para una gestión empresarial eficaz.' },
+        { type: 'heading', content: 'Contabilidad Financiera' },
+        { type: 'list', content: ['Obligatoria: regulada por el Plan General Contable (PGC) y las NIC/NIIF.', 'Orientada al exterior: accionistas, inversores, bancos, proveedores, Hacienda.', 'Histórica: registra hechos ya ocurridos.', 'Estandarizada: formato homogéneo para todas las empresas.', 'Principio de imagen fiel: refleja la realidad económica de la empresa.'] },
+        { type: 'heading', content: 'Contabilidad Analítica (de Gestión / de Costes)' },
+        { type: 'list', content: ['No obligatoria: cada empresa diseña su propio sistema.', 'Orientada al interior: directivos, gestores, responsables de área.', 'Flexible: puede combinar datos pasados, presentes y proyecciones futuras.', 'Personalizada: se adapta a la estructura y necesidades de la empresa.', 'Objetivo: ayudar a tomar decisiones de gestión (precios, inversiones, eficiencia).'] },
+        { type: 'highlight', content: 'Regla mnemotécnica para el examen: Financiera = Fiscal/Formal/Fuera (exterior). Analítica = Acción/Adentro/Adaptable (interna y flexible). La contabilidad analítica responde a la pregunta: ¿cuánto cuesta fabricar cada producto y cuánto gana cada línea de negocio?' },
+        { type: 'example', content: 'Una fábrica de mesas produce dos modelos: básica y premium. La contabilidad financiera dirá que el total de ventas fue 2M€ y el beneficio 300K€. La contabilidad analítica dirá que la mesa básica tiene margen del 8% y la premium del 35%, y que el departamento de exportación pierde dinero mientras el nacional gana. Esa información es clave para decidir qué productos potenciar.' },
+      ],
+      keyTerms: [
+        { term: 'Plan General Contable (PGC)', definition: 'Marco normativo español que regula cómo deben registrarse y presentarse las operaciones contables en las cuentas anuales.' },
+        { term: 'GAAP', definition: 'Generally Accepted Accounting Principles. Principios contables generalmente aceptados: prudencia, devengo, uniformidad, funcionamiento.' },
+        { term: 'NIC/NIIF', definition: 'Normas Internacionales de Contabilidad / Normas Internacionales de Información Financiera. Marco contable internacional de obligado cumplimiento para empresas cotizadas en la UE.' },
+        { term: 'Centro de Beneficio', definition: 'Unidad organizativa de la empresa que controla tanto ingresos como costes y por la que se mide la rentabilidad de forma independiente.' },
+      ],
+      summary: 'La contabilidad financiera es obligatoria, externa y estandarizada. La analítica es voluntaria, interna y flexible. Ambas son complementarias: la financiera informa de la situación global; la analítica, de la rentabilidad por producto, cliente o área.',
+      resources: [
+        { title: 'Contabilidad de Gestión vs Financiera — AECA', url: 'https://aeca.es/publicaciones/documentos/contabilidad-de-gestion/', description: 'Documentos técnicos de la Asociación Española de Contabilidad y Administración.', type: 'document' },
+        { title: 'Managerial Accounting — Investopedia', url: 'https://www.investopedia.com/terms/m/managerialaccounting.asp', description: 'Diferencias entre contabilidad financiera y de gestión con ejemplos reales.', type: 'article' },
+      ],
+    },
+    {
+      id: 'l2-2',
+      title: 'Estado de Resultados Analítico: Márgenes y EBITDA',
+      duration: 35,
+      sections: [
+        { type: 'paragraph', content: 'El estado de resultados oficial (cuenta de pérdidas y ganancias del PGC) no está diseñado para la toma de decisiones de gestión. La contabilidad analítica propone una presentación alternativa que separa costes variables de fijos y permite calcular márgenes significativos para gestionar el negocio.' },
+        { type: 'heading', content: 'Estructura Analítica de la Cuenta de Resultados' },
+        { type: 'code', content: '(+) Ingresos por ventas netas\n(−) Coste de ventas (costes variables de producción)\n= MARGEN BRUTO\n(−) Gastos comerciales y de marketing\n= MARGEN COMERCIAL\n(−) Gastos generales y de estructura (administración, RRHH, IT)\n= EBITDA (Resultado antes de intereses, impuestos, amortizaciones)\n(−) Amortizaciones y depreciaciones\n= EBIT (Resultado de explotación / BAII)\n(−) Resultado financiero (intereses de deuda)\n= BAT (Beneficio Antes de Impuestos / EBT)\n(−) Impuesto sobre Sociedades\n= RESULTADO NETO (Beneficio Neto)' },
+        { type: 'heading', content: 'Conceptos Clave' },
+        { type: 'list', content: ['Ventas Netas: Importe facturado menos devoluciones, rappels y descuentos. No incluye IVA.', 'Costes Variables: Varían proporcionalmente con el nivel de producción o ventas (materias primas, comisiones de venta).', 'Costes Fijos: No varían con el volumen de actividad (alquiler, sueldos de estructura, seguros).', 'EBITDA: Proxy del cash flow operativo. Mide la capacidad generadora de caja antes de decisiones de financiación e inversión.', 'BAII/EBIT: Mide la rentabilidad de la actividad empresarial pura, sin efecto de la financiación ni de los impuestos.'] },
+        { type: 'formula', content: 'Margen Bruto (%) = (Ventas − Coste Ventas) / Ventas × 100\nEBITDA Margin (%) = EBITDA / Ventas × 100\nROE = Beneficio Neto / Patrimonio Neto × 100\nROA = BAII / Activo Total × 100' },
+        { type: 'highlight', content: 'El EBITDA es el indicador más usado en valoración de empresas (múltiplos EV/EBITDA) y en análisis de crédito bancario. Un EBITDA negativo significa que la empresa pierde dinero incluso antes de pagar intereses e impuestos — señal de alerta máxima.' },
+        { type: 'heading', content: 'Centros de Beneficio' },
+        { type: 'paragraph', content: 'Un centro de beneficio es una unidad de la empresa (línea de producto, delegación geográfica, canal de venta) que tiene asignados tanto ingresos como costes y por la que se puede calcular un resultado individual. Permiten identificar qué partes del negocio son rentables y cuáles destruyen valor.' },
+        { type: 'example', content: 'Un banco tiene centros de beneficio por línea de producto (hipotecas, depósitos, tarjetas), por segmento de cliente (particulares, empresas, banca privada) y por zona geográfica. Esto permite al director general saber que la línea de hipotecas en Madrid es rentable pero las tarjetas en Andalucía pierden dinero, y actuar en consecuencia.' },
+      ],
+      keyTerms: [
+        { term: 'EBITDA', definition: 'Earnings Before Interest, Taxes, Depreciation and Amortization. Resultado antes de intereses, impuestos, depreciaciones y amortizaciones. Proxy del cash flow operativo.' },
+        { term: 'BAII / EBIT', definition: 'Beneficio Antes de Intereses e Impuestos. Mide la rentabilidad operativa pura de la empresa.' },
+        { term: 'Margen Bruto', definition: 'Diferencia entre ventas netas y coste de ventas, expresada en valor absoluto o porcentaje. Indica cuánto queda de cada euro vendido para cubrir costes de estructura.' },
+        { term: 'Amortización', definition: 'Imputación sistemática del coste de un activo a la cuenta de resultados a lo largo de su vida útil. Gasto contable que no implica salida de caja.' },
+        { term: 'Devengo', definition: 'Principio contable que establece que los ingresos y gastos se registran cuando se generan económicamente, no cuando se cobran o pagan.' },
+      ],
+      summary: 'La estructura analítica de la cuenta de resultados (Ventas → Margen Bruto → EBITDA → EBIT → BAT → Resultado Neto) es fundamental para gestionar el negocio. El EBITDA es el indicador clave de rentabilidad operativa y los centros de beneficio permiten diagnosticar qué áreas crean o destruyen valor.',
+      resources: [
+        { title: 'EBITDA Explained — Investopedia', url: 'https://www.investopedia.com/terms/e/ebitda.asp', description: 'Guía completa sobre EBITDA con ejemplos y limitaciones del indicador.', type: 'article' },
+        { title: 'Cuenta de Resultados Analítica — YouTube', url: 'https://www.youtube.com/watch?v=WEDIj9JBTC8', description: 'Construcción paso a paso de una cuenta de resultados analítica.', type: 'video' },
+        { title: 'ROE y ROA — Economipedia', url: 'https://economipedia.com/definiciones/rentabilidad-financiera-roe.html', description: 'Ratios de rentabilidad financiera y económica con ejemplos.', type: 'article' },
+      ],
+    },
+  ],
+  quiz: [
+    { id: 'q2-1', question: '¿Cuál es la principal diferencia entre la contabilidad financiera y la contabilidad analítica?', options: ['La contabilidad financiera mide costes y la analítica mide ingresos', 'La financiera es obligatoria y externa; la analítica es voluntaria e interna para la toma de decisiones', 'La analítica es obligatoria para empresas cotizadas y la financiera es opcional', 'No hay diferencia; ambas siguen el Plan General Contable'], correctIndex: 1, explanation: 'La contabilidad financiera es obligatoria, está regulada por el PGC y se orienta a usuarios externos (inversores, Hacienda). La analítica es voluntaria, se personaliza por empresa y sirve exclusivamente para la gestión interna y la toma de decisiones.', difficulty: 'básico', points: 1 },
+    { id: 'q2-2', question: '¿Qué mide el EBITDA y por qué es tan utilizado en valoración de empresas?', options: ['Mide el beneficio neto después de impuestos; es útil para calcular dividendos', 'Mide la capacidad operativa de generación de caja antes de decisiones de financiación e inversión; permite comparar empresas con distinta estructura de deuda e impuestos', 'Mide solo los costes variables de producción', 'Es un ratio de liquidez a corto plazo'], correctIndex: 1, explanation: 'El EBITDA (Earnings Before Interest, Taxes, Depreciation and Amortization) elimina el efecto de la estructura financiera (deuda), fiscal (impuestos) y las políticas de amortización, permitiendo comparar la eficiencia operativa de empresas de distintos países, tamaños y estructuras de capital. Es la base de los múltiplos de valoración (EV/EBITDA).', difficulty: 'intermedio', points: 2 },
+    { id: 'q2-3', question: 'Una empresa tiene ventas de 1.000.000€, coste de ventas de 600.000€ y gastos de estructura de 250.000€. ¿Cuál es su EBITDA?', options: ['400.000€', '150.000€', '250.000€', '600.000€'], correctIndex: 1, explanation: 'Margen Bruto = 1.000.000 − 600.000 = 400.000€. EBITDA = Margen Bruto − Gastos estructura = 400.000 − 250.000 = 150.000€. El EBITDA margin sería 150.000 / 1.000.000 = 15%.', difficulty: 'intermedio', points: 2 },
+    { id: 'q2-4', question: '¿Qué es un Centro de Beneficio y para qué sirve?', options: ['Un departamento que solo registra costes sin asignarles ingresos', 'Una unidad empresarial con ingresos y costes propios que permite medir su rentabilidad individual', 'Un centro bancario que gestiona los beneficios de la empresa', 'El departamento de contabilidad de la empresa'], correctIndex: 1, explanation: 'Un centro de beneficio es una unidad organizativa (producto, región, canal) a la que se asignan tanto ingresos como costes, permitiendo calcular su resultado individual. Son fundamentales para identificar qué partes del negocio son rentables y dónde se destruye valor.', difficulty: 'básico', points: 1 },
+    { id: 'q2-5', question: 'El principio contable de "devengo" establece que:', options: ['Los gastos se registran cuando se pagan en efectivo', 'Los ingresos y gastos se registran cuando se generan económicamente, independientemente del momento de cobro o pago', 'Solo se registran los ingresos ya cobrados en el período', 'Los gastos se registran al final del ejercicio fiscal'], correctIndex: 1, explanation: 'El principio de devengo es fundamental en contabilidad: los hechos económicos se registran cuando ocurren, no cuando se produce el movimiento de caja. Por eso, una venta realizada en diciembre se registra en ese ejercicio aunque se cobre en enero del año siguiente.', difficulty: 'básico', points: 1 },
+    { id: 'q2-6', question: '¿Cuál es la diferencia entre el BAII (EBIT) y el BAT (EBT)?', options: ['El BAT incluye las amortizaciones y el BAII no', 'El BAII es el resultado antes de intereses e impuestos; el BAT es después de restar el resultado financiero (intereses) pero antes de impuestos', 'Son exactamente lo mismo con distinto nombre', 'El BAII incluye el impuesto de sociedades y el BAT no'], correctIndex: 1, explanation: 'BAII/EBIT = Resultado de explotación (antes de intereses e impuestos). BAT/EBT = BAII ± Resultado financiero. La diferencia entre ambos es el efecto de la deuda: empresas muy endeudadas tendrán un BAT muy inferior al BAII por el peso de los intereses.', difficulty: 'intermedio', points: 2 },
+  ],
+}
