@@ -604,10 +604,10 @@ const S={view:'dash',tid:null,lid:null,prog:{},cache:{},
   tmsgs:[{r:'ai',c:'¡Hola! Soy tu <strong>Tutor de Marketing Integral</strong>, basado en el material de UNIR y Kotler & Armstrong (2018). Puedo explicarte cualquier concepto de los 9 temas, darte ejemplos de empresas reales o prepararte para los tests. ¿Qué tema te interesa?'}],
   tloading:false,fcTopic:1,fcIdx:0,fcFlipped:false};
 
-async function saveProg(){try{await window.storage.set('mi_prog3',JSON.stringify(S.prog))}catch(e){}}
-async function loadProg(){try{const r=await window.storage.get('mi_prog3');if(r&&r.value)S.prog=JSON.parse(r.value)}catch(e){}}
-async function saveCache(){try{await window.storage.set('mi_cache3',JSON.stringify(S.cache))}catch(e){}}
-async function loadCache(){try{const r=await window.storage.get('mi_cache3');if(r&&r.value)S.cache=JSON.parse(r.value)}catch(e){}}
+function saveProg(){try{localStorage.setItem('mi_prog3',JSON.stringify(S.prog))}catch(e){}}
+function loadProg(){try{const d=localStorage.getItem('mi_prog3');if(d)S.prog=JSON.parse(d)}catch(e){}}
+function saveCache(){try{localStorage.setItem('mi_cache3',JSON.stringify(S.cache))}catch(e){}}
+function loadCache(){try{const d=localStorage.getItem('mi_cache3');if(d)S.cache=JSON.parse(d)}catch(e){}}
 
 // ── HELPERS ──
 const byId=id=>TOPICS.find(t=>t.id===id);
@@ -775,7 +775,7 @@ Genera HTML con esta estructura exacta:
 
 Responde SOLO con <div class="l-body">...</div>. Sin markdown. Español académico. Referencias reales.`;
   const r=await fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',headers:{'Content-Type':'application/json'},
+    method:'POST',headers:{'Content-Type':'application/json','x-api-key':getApiKey(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
     body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
   });
   const d=await r.json();
@@ -892,6 +892,8 @@ function filterGlos(){
 function useSug(btn){const inp=document.getElementById('t-inp');if(inp){inp.value=btn.textContent;sendMsg()}}
 function inpKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg()}}
 function resize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px'}
+function getApiKey(){return localStorage.getItem('anthropic_key')||''}
+function setApiKey(k){localStorage.setItem('anthropic_key',k.trim())}
 async function sendMsg(){
   const inp=document.getElementById('t-inp'),btn=document.getElementById('send-btn');
   if(!inp||S.tloading)return;
@@ -900,8 +902,10 @@ async function sendMsg(){
   S.tmsgs.push({r:'user',c:txt});appendMsg('user',txt);
   const tid='typ'+Date.now();appendTyp(tid);scrollM();
   try{
+    const apiKey=getApiKey();
+    if(!apiKey){document.getElementById(tid)?.remove();appendMsg('ai','<strong>⚙️ Configura tu API key</strong> de Anthropic para usar el tutor. Haz clic en el botón <strong>🔑 API Key</strong> en la barra superior.');S.tloading=false;btn.disabled=false;return;}
     const r=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json'},
+      method:'POST',headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',max_tokens:1000,
         system:`Eres tutor experto de Marketing Integral (UNIR, España). Base: Kotler & Armstrong (2018), Esteban-Talaya (2017), Chaffey & Ellis-Chadwick (2019).
@@ -956,8 +960,8 @@ function toast(msg,type='info'){
 }
 
 // ── INIT ──
-async function init(){
-  await loadProg();await loadCache();
+function init(){
+  loadProg();loadCache();
   renderSb();updateProg();renderDash();
   const m=document.getElementById('msgs');
   if(m){m.innerHTML='';appendMsg('ai',S.tmsgs[0].c)}
