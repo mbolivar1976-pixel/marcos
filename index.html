@@ -1013,10 +1013,7 @@ Responde en español académico claro, con ejemplos de empresas reales (Apple, A
     S.tmsgs.push({r:'ai',c:reply});document.getElementById(tid)?.remove();appendMsg('ai',fmtMsg(reply));
   }catch(e){document.getElementById(tid)?.remove();appendMsg('ai','Lo siento, hubo un error al conectar con el tutor. Por favor inténtalo de nuevo.');}
   finally{S.tloading=false;btn.disabled=false;scrollMsgs()}}
-function fmtMsg(t){return '<p>'+t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/
-
-/g,'</p><p>').replace(/
-/g,'<br>')+'</p>'}
+function fmtMsg(t){return '<p>'+t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>')+'</p>'}
 function appendMsg(role,content,init=false){const c=document.getElementById('msgs');if(!c)return;const isU=role==='user';const d=document.createElement('div');d.className=`msg ${isU?'usr':'ai'}`;d.innerHTML=`<div class="mav ${isU?'u':'ai'}">${isU?'Tú':'🎓'}</div><div class="mbbl">${content}</div>`;c.appendChild(d);if(!init)scrollMsgs();}
 function appendTyping(id){const c=document.getElementById('msgs');if(!c)return;const d=document.createElement('div');d.className='msg ai';d.id=id;d.innerHTML=`<div class="mav ai">🎓</div><div class="mbbl"><div class="typing"><div class="td"></div><div class="td"></div><div class="td"></div></div></div>`;c.appendChild(d);}
 function scrollMsgs(){setTimeout(()=>{const m=document.getElementById('msgs');if(m)m.scrollTop=m.scrollHeight},50)}
