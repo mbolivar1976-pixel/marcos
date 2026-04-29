@@ -283,7 +283,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
     <button class="btn btn-teal" onclick="nav('tutor')">🤖 Tutor IA</button>
   </div>
   </div>
-  <div class="view active" id="v-dash">
+  <div class="view active" id="v-home"></div>
+  <div class="view" id="v-dash">
     <div class="d-hero">
       <div class="hero-tag">✦ Basado en material oficial UNIR</div>
       <h1 class="h1">Bienvenido a<br><span>Marketing Integral</span></h1>
@@ -367,7 +368,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
   </div>
 </div>
 <script>
-const LESSON_CONTENT = {
+/* ═══════════════════════════════════════════════════
+   COURSE CATALOG — agregar nuevas materias aquí
+   ═══════════════════════════════════════════════════ */
+const COURSE_DATA={};
+COURSE_DATA.mkt={
+  meta:{id:'mkt',name:'Marketing Integral',subtitle:'Alta Gerencia · UNIR',icon:'📈',col:'#e8b94a',
+    tutor:'¡Hola! Soy tu tutor de <strong>Marketing Integral</strong>. Las lecciones están basadas en el material oficial de UNIR enriquecido con fuentes externas (Kotler, HubSpot, IBM, Qualtrics, Statista). ¿En qué puedo ayudarte?'},
+  content:{
   "1-1": `<div class="l-body"><h2>📌 Concepto Central</h2><p>El marketing es la disciplina que estudia cómo las organizaciones crean, comunican y entregan valor a sus clientes. <strong>Ninguna función empresarial tiene sentido sin demanda suficiente</strong>: finanzas, producción y contabilidad dependen del éxito del marketing para subsistir.</p><div class="cbox"><div class="cbox-lbl">Definición AMA (2013)</div><p>El marketing es la actividad, conjunto de instituciones y procesos para crear, comunicar, entregar e intercambiar ofertas que tienen valor para los consumidores, clientes, socios y la sociedad en general.</p></div><h2>🎯 Desarrollo del Contenido</h2><p>El valor del marketing se extiende más allá de las empresas: ha ayudado a introducir productos que facilitan la vida de las personas, ha generado empleo y ha permitido a las organizaciones participar en actividades socialmente responsables. Su estudio es relevante para todos los departamentos.</p><h3>Dos niveles del marketing</h3><ul><li><strong>Función técnica:</strong> establece relaciones de intercambio, identifica necesidades y orienta la oferta hacia su satisfacción.</li><li><strong>Filosofía organizacional:</strong> guía a toda la organización hacia el consumidor.</li></ul><h3>Marketing 4.0: la nueva realidad</h3><p>Philip Kotler define en Marketing 4.0 que el objetivo es ayudar a las marcas a guiar a los consumidores desde el conocimiento hasta la recomendación activa. La integración de canales digitales y físicos, la personalización a escala y la sostenibilidad son los pilares del marketing moderno.</p><div class="ebox"><div class="ebox-lbl">Ejemplo práctico</div><p>Google es el caso paradigmático: detectó que consumidores y empresas necesitaban acceder a información en internet de forma eficaz y creó un buscador que satisfizo esa necesidad, generando uno de los negocios más rentables del mundo. El marketing estuvo en el centro de la decisión estratégica.</p></div><h2>💡 Ideas para Recordar</h2><ul><li>El marketing no es solo publicidad: es el proceso completo de crear y entregar valor al cliente.</li><li>El éxito financiero depende de la capacidad de generar demanda suficiente de productos y servicios.</li><li>El marketing ocupa una posición central y su estudio requiere la atención de todos los departamentos de la empresa.</li></ul></div>`,
   "1-2": `<div class="l-body"><h2>📌 Concepto Central</h2><p>El marketing estudia las relaciones de intercambio que buscan satisfacer necesidades. Más allá de transacciones únicas, las empresas quieren <strong>retener clientes y construir relaciones sólidas ofreciendo valor superior</strong>. El éxito empresarial depende de crear y mantener esas relaciones a largo plazo.</p><div class="cbox"><div class="cbox-lbl">Definición Kotler y Armstrong (2018)</div><p>El marketing es la actividad que involucra a clientes y administra relaciones con ellos. El elemento central es la creación de valor en un mercado donde los consumidores participan activamente y colaboran en la generación de valor.</p></div><h2>🎯 Desarrollo del Contenido</h2><p>El intercambio es el núcleo del marketing: obtener algo deseado ofreciendo algo a cambio. En el siglo XXI, la <strong>cocreación de valor</strong> ha transformado este proceso: el cliente ya no es receptor pasivo sino agente generador de valor.</p><h3>Evolución del concepto de marketing</h3><ul><li><strong>Marketing 1.0:</strong> centrado en el producto (producción masiva).</li><li><strong>Marketing 2.0:</strong> centrado en el consumidor (satisfacción de necesidades).</li><li><strong>Marketing 3.0:</strong> centrado en los valores humanos y la sostenibilidad.</li><li><strong>Marketing 4.0:</strong> integración digital-física con el cliente conectado en el centro.</li></ul><div class="ebox"><div class="ebox-lbl">Ejemplo práctico</div><p>Nike con Nike+ permite a los usuarios registrar entrenamientos, competir con amigos y personalizar sus productos. Este ecosistema es cocreación de valor: el cliente participa activamente y aporta datos que mejoran los productos de la marca.</p></div><h2>💡 Ideas para Recordar</h2><ul><li>El intercambio es el acto central del marketing: dar algo para obtener algo de valor para ambas partes.</li><li>La cocreación implica que clientes y empresas trabajan juntos en la propuesta de valor superior.</li><li>El objetivo no es solo la transacción, sino la relación a largo plazo que genera valor sostenible.</li></ul></div>`,
   "1-3": `<div class="l-body"><h2>📌 Concepto Central</h2><p>La <strong>planificación estratégica</strong> es el proceso que permite establecer y mantener una relación viable entre objetivos, recursos y oportunidades del mercado. El plan de marketing es el instrumento central, actuando en dos niveles: <strong>estratégico</strong> (largo plazo) y <strong>táctico</strong> (acciones concretas).</p><div class="cbox"><div class="cbox-lbl">Proceso de planificación estratégica (Kotler y Armstrong)</div><p>El plan de marketing es el instrumento central para dirigir y coordinar el esfuerzo de marketing. La misión corporativa es la expresión del fin que persigue la empresa, definiendo lo que busca alcanzar en el entorno más amplio.</p></div><h2>🎯 Desarrollo del Contenido</h2><p>Las empresas se organizan en cuatro niveles: corporativo, división, unidad de negocio y producto. Cada nivel elabora su plan estratégico subordinado al nivel superior.</p><h3>Fases del proceso de planificación</h3><ul><li><strong>1. Definición de la misión:</strong> ¿En qué negocio estamos? ¿Quién es el cliente? ¿Qué valor esperan?</li><li><strong>2. UEN (Unidades Estratégicas de Negocio):</strong> cada unidad tiene sus propios competidores y responsable.</li><li><strong>3. Asignación de recursos:</strong> Matriz BCG (cuota/crecimiento) o Matriz GE/McKinsey (atractivo/ventaja).</li><li><strong>4. Evaluación de oportunidades:</strong> expansión, reposicionamiento, outsourcing estratégico.</li></ul><h3>Características de una buena misión corporativa</h3><ul><li>Centrada en objetivos limitados y claros.</li><li>Señala los valores fundamentales de la empresa.</li><li>Define las esferas competitivas en las que opera.</li><li>Es memorable, con visión a largo plazo.</li></ul><div class="ebox"><div class="ebox-lbl">Ejemplo práctico</div><p>Amazon pasó de "la librería online más grande" a "la empresa más centrada en el cliente del mundo". Esta redefinición de misión le permitió expandirse a AWS, Prime, Kindle y muchos otros negocios rentables. La planificación estratégica bien ejecutada genera opciones de crecimiento ilimitadas.</p></div><h2>💡 Ideas para Recordar</h2><ul><li>La planificación estratégica conecta la misión corporativa con las acciones de marketing concretas.</li><li>La Matriz BCG clasifica las UEN en Estrellas, Vacas Lecheras, Interrogantes y Perros.</li><li>El plan estratégico actúa como guía: establece dirección, prioriza recursos y evalúa oportunidades.</li></ul></div>`,
@@ -1002,8 +1010,8 @@ const LESSON_CONTENT = {
 <ul><li>La cocreación transforma al cliente de receptor pasivo en protagonista activo: cambia la naturaleza de la relación y dispara la lealtad.</li><li>El "efecto IKEA" es real y poderoso: las personas valoran más lo que ayudan a crear, aunque el resultado sea inferior.</li><li>Las comunidades de marca son el activo más valioso de Harley-Davidson, Apple, LEGO y Patagonia: son más difíciles de imitar que cualquier tecnología.</li></ul>
 <div class="rbox"><div class="rbox-lbl">📚 Referencias</div><p>Prahalad & Ramaswamy — <em>The Future of Competition</em> (2004) · Chesbrough — <em>Open Innovation</em> (2003) · Muniz & O'Guinn — <em>Brand Community</em>, Journal of Consumer Research (2001)</p></div>
 </div>`,
-};
-const FC={
+  },
+  fc:{
   1:[
     {q:"¿Cuáles son las 4Ps del marketing mix?",a:"<strong>Producto, Precio, Plaza y Promoción</strong> (McCarthy, 1960). Forman el núcleo operativo del marketing mix clásico."},
     {q:"¿Qué es el Marketing 4.0 según Kotler?",a:"Enfoque que <strong>integra lo digital y lo físico</strong>, guiando al consumidor desde el conocimiento hasta la recomendación activa."},
@@ -1067,8 +1075,8 @@ const FC={
     {q:"¿Qué es un KPI en marketing?",a:"<strong>Key Performance Indicator</strong>: métrica clave cuantificable que mide el progreso hacia un objetivo de marketing."},
     {q:"¿Qué % de estrategias se ejecutan efectivamente según HBR?",a:"Solo el <strong>10%</strong> de las estrategias bien formuladas se ejecutan de forma efectiva (Harvard Business Review, 2023)."}
   ]
-};
-const GLOS=[
+  },
+  glos:[
   {t:"Marketing Mix (4Ps)",d:"Conjunto de herramientas controlables: Producto, Precio, Plaza y Promoción que la empresa combina para producir la respuesta deseada en el mercado objetivo.",s:"McCarthy, 1960",c:"T1",col:"#e8b94a"},
   {t:"Propuesta de Valor",d:"Conjunto de beneficios únicos que una empresa promete entregar a sus clientes para satisfacer sus necesidades mejor que la competencia.",s:"Kotler & Armstrong",c:"T1",col:"#e8b94a"},
   {t:"Marketing 4.0",d:"Enfoque que integra la interacción online y offline, guiando al consumidor desde el conocimiento de la marca hasta la recomendación activa.",s:"Kotler, Kartajaya & Setiawan",c:"T1",col:"#e8b94a"},
@@ -1109,8 +1117,8 @@ const GLOS=[
   {t:"Matriz de Ansoff",d:"Herramienta con 4 opciones de crecimiento: Penetración de mercado, Desarrollo de mercados, Desarrollo de productos y Diversificación.",s:"Ansoff, 1957",c:"T9",col:"#9b59b6"},
   {t:"KPI (Key Performance Indicator)",d:"Métrica clave que mide el progreso hacia un objetivo de marketing. Debe ser cuantificable, relevante y alineada con los objetivos estratégicos.",s:"Management by Objectives",c:"T9",col:"#9b59b6"},
   {t:"ROI (Return on Investment)",d:"Retorno sobre la inversión = (Beneficio neto / Inversión) × 100. Medida universal de eficiencia de las acciones de marketing.",s:"Standard Financial Metric",c:"T9",col:"#9b59b6"}
-];
-const TOPICS=[
+  ],
+  topics:[
   {id:1,title:"Fundamentos del Marketing",sub:"Tema 1",icon:"🎯",col:"#e8b94a",desc:"Conceptos esenciales, evolución histórica, rol estratégico y el marketing mix clásico",
    lessons:[{id:"1-1",t:"Introducción y Objetivos"},{id:"1-2",t:"El Marketing y la Creación de Valor"},{id:"1-3",t:"El Marketing en la Planificación Estratégica"},{id:"1-4",t:"El Proceso de Marketing: El Marketing Mix"},{id:"1-5",t:"La Nueva Realidad del Marketing"},{id:"1-6",t:"Las 7Ps del Marketing de Servicios"},{id:"1-7",t:"Evolución: Del Marketing 1.0 al 5.0"},{id:"1-8",t:"Marketing Estratégico vs Marketing Operativo"},{id:"1-9",t:"Marketing Sostenible y Responsabilidad Social"}],
    quiz:[{q:"¿Cuáles son las 4Ps del marketing mix clásico?",o:["Producto, Precio, Plaza, Promoción","Personas, Proceso, Plaza, Precio","Producto, Publicidad, Precio, Plaza","Posicionamiento, Precio, Plaza, Promoción"],c:0,e:"Las 4Ps de McCarthy: Producto, Precio, Plaza y Promoción forman el núcleo del marketing mix clásico."},
@@ -1174,10 +1182,44 @@ const TOPICS=[
    {q:"¿Cuál es la estrategia de Ansoff para lanzar nuevos productos en mercados actuales?",o:["Penetración de mercado","Desarrollo de mercados","Desarrollo de productos","Diversificación"],c:2,e:"La estrategia de desarrollo de productos consiste en lanzar nuevos productos para los mercados actuales de la empresa, aprovechando el conocimiento del cliente existente."},
    {q:"¿Qué elemento NO forma parte del plan de marketing?",o:["Análisis DAFO de la situación","Fijación de objetivos SMART","Plan general de RRHH corporativo","Definición de estrategias de marketing"],c:2,e:"El plan de RRHH general es un plan corporativo independiente. El plan de marketing incluye análisis, objetivos, estrategias, planes de acción y sistema de control."},
    {q:"¿Qué afirma Harvard Business Review sobre la ejecución de las estrategias?",o:["El 90% se ejecutan perfectamente","Solo el 10% de las estrategias bien formuladas se ejecutan efectivamente","La ejecución siempre supera al diseño estratégico","El presupuesto es el único factor de éxito"],c:1,e:"HBR estima que solo el 10% de las estrategias bien formuladas se ejecutan de forma efectiva, lo que explica por qué la excelencia en la ejecución es la ventaja competitiva más difícil de imitar."}]}
-];
-const S={view:'dash',tid:null,lid:null,prog:{},tmsgs:[{r:'ai',c:'¡Hola! Soy tu tutor de <strong>Marketing Integral</strong>. Las lecciones del curso están basadas en el material oficial de UNIR enriquecido con fuentes externas (Kotler, HubSpot, IBM, Qualtrics, Statista). ¿En qué puedo ayudarte?'}],qs:null,tloading:false,fcTopic:1,fcIdx:0,fcFlipped:false,glosFilter:'all'};
-function saveProg(){try{localStorage.setItem('mi_prog3',JSON.stringify(S.prog))}catch(e){}}
-function loadProg(){try{const d=localStorage.getItem('mi_prog3');if(d)S.prog=JSON.parse(d)}catch(e){}}
+  ]
+};
+
+/* ─── SEGUNDA MATERIA: Control de Gestión y Presupuestario ─── */
+COURSE_DATA.cgp={
+  meta:{id:'cgp',name:'Control de Gestión y Presupuestario',subtitle:'Alta Gerencia · UNIR',icon:'💰',col:'#4dba74',
+    tutor:'¡Hola! Soy tu tutor de <strong>Control de Gestión</strong>. Te ayudo con presupuestos, KPIs, cuadro de mando integral, análisis de desviaciones y planificación financiera. ¿Por dónde empezamos?'},
+  content:{
+    "1-1":`<div class="l-body"><h2>📌 Concepto Central</h2><p>El <strong>Control de Gestión</strong> es el proceso mediante el cual los directivos influyen en los miembros de la organización para que implementen las estrategias de forma eficaz y eficiente. No es solo control financiero: es el sistema nervioso de la empresa que conecta estrategia, operaciones y resultados.</p><div class="cbox"><div class="cbox-lbl">Definición Anthony & Govindarajan</div><p>El control de gestión es el proceso por el que los managers aseguran que los recursos se obtienen y utilizan de forma eficaz y eficiente en el logro de los objetivos de la organización.</p></div><h2>🎯 Desarrollo del Contenido</h2><h3>Niveles de Control</h3><ul><li><strong>Control estratégico:</strong> ¿vamos en la dirección correcta? (largo plazo)</li><li><strong>Control de gestión:</strong> ¿usamos los recursos eficientemente? (medio plazo)</li><li><strong>Control operativo:</strong> ¿las tareas se ejecutan correctamente? (corto plazo)</li></ul><div class="ebox"><div class="ebox-lbl">Ejemplo</div><p>Toyota usa un sistema de control de gestión en 3 niveles: a nivel estratégico revisa su posición competitiva anualmente; a nivel de gestión monitoriza KPIs de producción mensualmente; a nivel operativo usa el sistema Andon para detectar y resolver problemas en tiempo real en la línea de montaje.</p></div><h2>💡 Ideas para Recordar</h2><ul><li>El control no es vigilancia: es el sistema que alinea la acción diaria con la estrategia de largo plazo.</li><li>Sin control de gestión, la estrategia más brillante queda en papel.</li></ul></div>`
+  },
+  fc:{1:[{q:"¿Qué es el Control de Gestión?",a:"Proceso por el que los managers aseguran que los <strong>recursos se obtienen y utilizan eficazmente</strong> en el logro de los objetivos organizacionales (Anthony & Govindarajan)."}]},
+  glos:[{t:"Control de Gestión",d:"Proceso de influencia sobre los miembros de la organización para implementar estrategias de forma eficaz y eficiente.",s:"Anthony & Govindarajan",c:"T1",col:"#4dba74"}],
+  topics:[
+    {id:1,title:"El Sistema de Control de Gestión",sub:"Tema 1",icon:"🎯",col:"#4dba74",desc:"Fundamentos, niveles y herramientas del control de gestión empresarial",
+     lessons:[{id:"1-1",t:"Introducción al Control de Gestión"},{id:"1-2",t:"Planificación Estratégica y Control"},{id:"1-3",t:"El Cuadro de Mando Integral (CMI)"},{id:"1-4",t:"KPIs y Métricas de Rendimiento"},{id:"1-5",t:"Sistemas de Información para el Control"}],
+     quiz:[{q:"¿Cuál es el objetivo principal del control de gestión?",o:["Reducir costes a toda costa","Asegurar que los recursos se usan eficazmente para lograr objetivos","Controlar a los empleados","Maximizar el beneficio a corto plazo"],c:1,e:"El control de gestión busca asegurar la alineación entre recursos disponibles y objetivos estratégicos."}]}
+  ]
+};
+
+/* ─── TERCERA MATERIA (plantilla) ─── */
+// Para agregar nueva materia: COURSE_DATA.xxx = { meta:{...}, content:{}, fc:{}, glos:[], topics:[] };
+
+/* ─── Variables activas (se reemplazan al seleccionar materia) ─── */
+let TOPICS=[], LESSON_CONTENT={}, FC={}, GLOS=[];
+
+function loadCourse(id){
+  const c=COURSE_DATA[id];if(!c)return;
+  S.courseId=id;
+  TOPICS=c.topics;LESSON_CONTENT=c.content;FC=c.fc;GLOS=c.glos;
+  S.fcTopic=TOPICS[0]?.id||1;S.glosFilter='all';
+  document.title=c.meta.name+' · LMS';
+  try{localStorage.setItem('lms_last_course',id)}catch(e){}}
+
+const S={courseId:'mkt',view:'dash',tid:null,lid:null,prog:{},tmsgs:[],qs:null,tloading:false,fcTopic:1,fcIdx:0,fcFlipped:false,glosFilter:'all'};
+function _progKey(){return 'lms_prog_'+S.courseId;}
+function _cacheKey(){return 'lms_cache_'+S.courseId;}
+function saveProg(){try{localStorage.setItem(_progKey(),JSON.stringify(S.prog))}catch(e){}}
+function loadProg(){try{const d=localStorage.getItem(_progKey());if(d)S.prog=JSON.parse(d)}catch(e){}}
 const byId=id=>TOPICS.find(t=>t.id===id);
 function lessonById(id){for(const t of TOPICS){const l=t.lessons.find(l=>l.id===id);if(l)return l}return null}
 function topicByLesson(lid){return TOPICS.find(t=>t.lessons.some(l=>l.id===lid))}
@@ -1190,8 +1232,11 @@ function quizPassed(){return TOPICS.filter(t=>getProg(t.id).qs!==null&&getProg(t
 function nav(view,tid=null,lid=null){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   S.view=view;S.tid=tid;S.lid=lid;
-  document.getElementById('v-'+{dash:'dash',topic:'topic',lesson:'lesson',quiz:'quiz',tutor:'tutor',flash:'flash',glosario:'glosario'}[view]).classList.add('active');
+  const vmap={home:'home',dash:'dash',topic:'topic',lesson:'lesson',quiz:'quiz',tutor:'tutor',flash:'flash',glosario:'glosario'};
+  document.getElementById('v-'+(vmap[view]||'home')).classList.add('active');
   document.getElementById('main').scrollTop=0;
+  const cm=COURSE_DATA[S.courseId]?.meta;
+  if(view==='home'){bc([]);renderHome();return;}
   if(view==='dash'){bc(['Panel principal']);renderDash()}
   else if(view==='topic'){bc([`Tema ${tid}`]);renderTopic(tid)}
   else if(view==='lesson'){const t=topicByLesson(lid);bc([`Tema ${t?.id}`,lessonById(lid)?.t||'']);renderLesson(lid)}
@@ -1200,16 +1245,45 @@ function nav(view,tid=null,lid=null){
   else if(view==='flash'){bc(['Flashcards']);renderFlash()}
   else if(view==='glosario'){bc(['Glosario']);renderGlosario()}
   renderSb();updateProg();}
-function bc(parts){document.getElementById('bc').innerHTML='<span>Marketing Integral</span>'+parts.map(p=>`<span class="bc-sep">›</span><span class="bc-cur">${p}</span>`).join('');}
+function bc(parts){const cm=COURSE_DATA[S.courseId]?.meta;document.getElementById('bc').innerHTML=`<span onclick="nav('home')" style="cursor:pointer;opacity:.7">${cm?.name||'LMS'}</span>`+parts.map(p=>`<span class="bc-sep">›</span><span class="bc-cur">${p}</span>`).join('');}
+function renderHome(){
+  const el=document.getElementById('v-home');if(!el)return;
+  const courses=Object.values(COURSE_DATA);
+  el.innerHTML=`<div style="max-width:900px;margin:0 auto;padding:48px 36px">
+    <div style="text-align:center;margin-bottom:40px">
+      <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--text);margin-bottom:10px">Alta Gerencia · UNIR</div>
+      <p style="font-size:15px;color:var(--text-2)">Selecciona la materia que deseas estudiar</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px">
+      ${courses.map(c=>{
+        const active=S.courseId===c.meta.id;
+        return `<div onclick="selectCourse('${c.meta.id}')" style="background:var(--card);border:1px solid ${active?c.meta.col:' var(--border)'};border-radius:16px;padding:28px 24px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden" onmouseover="this.style.borderColor='${c.meta.col}'" onmouseout="this.style.borderColor='${active?c.meta.col:'var(--border)'}'">
+          <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:${c.meta.col}"></div>
+          <div style="font-size:36px;margin-bottom:14px">${c.meta.icon}</div>
+          <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">${c.meta.name}</div>
+          <div style="font-size:12px;color:var(--text-2);margin-bottom:16px">${c.meta.subtitle}</div>
+          <div style="font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;display:inline-block;background:${c.meta.col}22;color:${c.meta.col}">${active?'▶ Continuar':'→ Comenzar'}</div>
+        </div>`;}).join('')}
+    </div>
+  </div>`;
+  renderSb();}
+function selectCourse(id){
+  const c=COURSE_DATA[id];if(!c)return;
+  loadCourse(id);loadProg();
+  S.tmsgs=[{r:'ai',c:c.meta.tutor}];
+  const m=document.getElementById('msgs');if(m){m.innerHTML='';appendMsg('ai',S.tmsgs[0].c,true);}
+  nav('dash');}
 function renderSb(){
+  const cm=COURSE_DATA[S.courseId]?.meta||{};
   document.getElementById('sb-nav').innerHTML=`
+    <div class="ni${S.view==='home'?' active':''}" onclick="nav('home')" style="border-bottom:1px solid var(--border);margin-bottom:4px;color:var(--text-m)"><span class="ni-icon">⬡</span><span class="ni-name" style="font-size:11px">Todas las materias</span></div>
     <div class="nav-lbl">General</div>
     <div class="ni${S.view==='dash'?' active':''}" onclick="nav('dash')"><span class="ni-icon">⊞</span><span class="ni-name">Panel principal</span></div>
     <div class="nav-lbl" style="margin-top:6px">Temario</div>
     ${TOPICS.map(t=>{const p=topicPct(t.id);return `<div class="ni${S.tid===t.id?' active':''}" onclick="nav('topic',${t.id})"><span class="ni-icon">${t.icon}</span><span class="ni-name">${t.title}</span><span class="ni-num">${p>0?p+'%':t.id}</span></div>`;}).join('')}
     <div class="nav-lbl" style="margin-top:6px">Herramientas</div>
-    <div class="ni${S.view==='flash'?' active':''}" onclick="nav('flash')" style="color:var(--violet)"><span class="ni-icon">🃏</span><span class="ni-name">Flashcards</span><span class="ni-num" style="color:var(--violet)">45</span></div>
-    <div class="ni${S.view==='glosario'?' active':''}" onclick="nav('glosario')" style="color:var(--teal)"><span class="ni-icon">📖</span><span class="ni-name">Glosario</span><span class="ni-num" style="color:var(--teal)">38</span></div>
+    <div class="ni${S.view==='flash'?' active':''}" onclick="nav('flash')" style="color:var(--violet)"><span class="ni-icon">🃏</span><span class="ni-name">Flashcards</span><span class="ni-num" style="color:var(--violet)">${Object.keys(FC).length*5||0}</span></div>
+    <div class="ni${S.view==='glosario'?' active':''}" onclick="nav('glosario')" style="color:var(--teal)"><span class="ni-icon">📖</span><span class="ni-name">Glosario</span><span class="ni-num" style="color:var(--teal)">${GLOS.length}</span></div>
     <div class="ni tutor${S.view==='tutor'?' active':''}" onclick="nav('tutor')" style="border-left:none;border-top:1px solid var(--border)"><span class="ni-icon">🤖</span><span class="ni-name">Tutor de IA</span><span class="ni-ia">IA</span></div>`;}
 function updateProg(){const tot=TOPICS.reduce((a,t)=>a+t.lessons.length,0),done=totalDone(),p=Math.round(done/tot*100);document.getElementById('pct').textContent=p+'%';document.getElementById('pbar').style.width=p+'%';}
 function renderDash(){
@@ -1396,7 +1470,14 @@ function renderGlosario(filter){
     </div></div>`;}
 function filterGlos(){renderGlosario();}
 function toast(msg,type='info'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast ${type}`;void t.offsetWidth;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-function init(){loadProg();renderSb();updateProg();renderDash();const m=document.getElementById('msgs');if(m){m.innerHTML='';appendMsg('ai',S.tmsgs[0].c,true)}updateKeyBtn();}
+function init(){
+  const lastCourse=localStorage.getItem('lms_last_course')||'mkt';
+  loadCourse(lastCourse);loadProg();
+  const cm=COURSE_DATA[S.courseId]?.meta;
+  S.tmsgs=[{r:'ai',c:cm?.tutor||'¡Hola! ¿En qué puedo ayudarte?'}];
+  updateKeyBtn();
+  nav('home');
+}
 init();
 </script>
 </body>
