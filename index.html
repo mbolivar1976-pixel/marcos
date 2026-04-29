@@ -214,6 +214,51 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .key-input:focus{border-color:var(--gold)}
 .key-hint{font-size:11.5px;color:var(--text-m);margin-top:8px;line-height:1.6}
 .key-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+/* ── FLASHCARDS ── */
+.fc-wrap{max-width:700px;margin:0 auto;padding:36px}
+.fc-hdr{text-align:center;margin-bottom:28px}
+.fc-h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:8px}
+.fc-sub{font-size:13px;color:var(--text-2)}
+.fc-tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
+.fc-tab{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);color:var(--text-2);background:transparent;transition:all .15s;font-family:'DM Sans',sans-serif}
+.fc-tab.active{background:var(--gold-d);border-color:var(--gold);color:var(--gold)}
+.fc-counter{text-align:center;font-size:12px;color:var(--text-m);margin-bottom:20px}
+.fc-scene{width:100%;max-width:520px;height:280px;margin:0 auto 24px;perspective:1000px;cursor:pointer}
+.fc-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s ease;border-radius:14px}
+.fc-card.flipped{transform:rotateY(180deg)}
+.fc-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;border:1px solid var(--border)}
+.fc-front{background:linear-gradient(135deg,var(--card) 0%,#161f3d 100%);border-color:var(--border-l)}
+.fc-back{background:linear-gradient(135deg,#0a1a30 0%,#0f1f40 100%);border-color:rgba(155,109,255,.3);transform:rotateY(180deg)}
+.fc-q{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);line-height:1.5}
+.fc-hint{font-size:11px;color:var(--text-m);margin-top:12px}
+.fc-a{font-size:14px;color:var(--text);line-height:1.6}
+.fc-a strong{color:var(--violet)}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:16px}
+.fc-btn{background:var(--card);border:1px solid var(--border-l);color:var(--text-2);padding:9px 22px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;transition:all .15s}
+.fc-btn:hover{background:var(--card-h);color:var(--text)}
+.fc-flip-btn{background:rgba(155,109,255,.15);border-color:rgba(155,109,255,.4);color:var(--violet)}
+.fc-flip-btn:hover{background:rgba(155,109,255,.25)}
+/* ── GLOSARIO ── */
+.glos-wrap{max-width:900px;margin:0 auto;padding:36px}
+.glos-hdr{margin-bottom:28px}
+.glos-h1{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:8px}
+.glos-sub{font-size:13px;color:var(--text-2);margin-bottom:18px}
+.glos-ctrl{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.glos-search{flex:1;min-width:200px;background:var(--card);border:1px solid var(--border-l);border-radius:8px;padding:9px 13px;font-size:13px;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s}
+.glos-search:focus{border-color:var(--gold)}
+.glos-filter{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.gf-btn{padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);color:var(--text-m);background:transparent;font-family:'DM Sans',sans-serif;transition:all .15s}
+.gf-btn.active{background:var(--gold-d);border-color:var(--gold);color:var(--gold)}
+.glos-count{font-size:12px;color:var(--text-m);margin:12px 0 16px}
+.glos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.glos-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;transition:all .15s;position:relative;overflow:hidden}
+.glos-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gcol,var(--gold))}
+.glos-card:hover{background:var(--card-h);border-color:var(--border-l)}
+.glos-term{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.glos-def{font-size:12.5px;color:var(--text-2);line-height:1.6;margin-bottom:8px}
+.glos-foot{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.glos-src{font-size:10.5px;color:var(--text-m);font-style:italic}
+.glos-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -298,6 +343,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
       </div>
     </div>
   </div>
+  <div class="view" id="v-flash"></div>
+  <div class="view" id="v-glosario"></div>
 </main>
 </div>
 <div class="toast" id="toast"></div>
@@ -815,6 +862,113 @@ const LESSON_CONTENT = {
 <ul><li>El plan de marketing más exitoso es el que se implementa, no el más sofisticado: la excelencia en la ejecución de una estrategia simple supera siempre la ejecución mediocre de una estrategia brillante.</li><li>El control no es una actividad burocrática sino una fuente de aprendizaje: cada desviación del plan es una oportunidad para entender mejor el mercado y mejorar la estrategia.</li><li>El marketing del siglo XXI requiere combinar creatividad e intuición con rigor analítico: los mejores marketers son aquellos que saben contar historias y también interpretar dashboards.</li></ul>
 </div>`,
 };
+const FC={
+  1:[
+    {q:"¿Cuáles son las 4Ps del marketing mix?",a:"<strong>Producto, Precio, Plaza y Promoción</strong> (McCarthy, 1960). Forman el núcleo operativo del marketing mix clásico."},
+    {q:"¿Qué es el Marketing 4.0 según Kotler?",a:"Enfoque que <strong>integra lo digital y lo físico</strong>, guiando al consumidor desde el conocimiento hasta la recomendación activa."},
+    {q:"¿Qué mide la Matriz BCG?",a:"Clasifica UEN según <strong>cuota de mercado relativa</strong> y <strong>tasa de crecimiento</strong> en: Estrellas, Vacas, Interrogantes y Perros."},
+    {q:"¿Qué orientación pone al cliente en el centro?",a:"La <strong>orientación al mercado</strong>: todas las actividades giran en torno a entender y satisfacer al cliente mejor que la competencia."},
+    {q:"¿Cuál es el objetivo fundamental del marketing?",a:"<strong>Crear, comunicar y entregar valor</strong> para satisfacer necesidades de clientes con rentabilidad para la organización (Kotler & Armstrong)."}
+  ],
+  2:[
+    {q:"¿Qué es la propuesta de valor?",a:"El conjunto de <strong>beneficios únicos</strong> que una empresa promete entregar para satisfacer necesidades del cliente mejor que la competencia."},
+    {q:"¿Cuál es la fórmula del CLV?",a:"<strong>CLV = Valor medio × Frecuencia anual × Años de relación</strong>. Mide el valor total que un cliente aporta durante toda la relación."},
+    {q:"¿Qué es el marketing de relaciones?",a:"Estrategia orientada a <strong>construir relaciones rentables a largo plazo</strong> con clientes, más allá de transacciones puntuales."},
+    {q:"¿Cuál es la diferencia entre valor y precio?",a:"El <strong>valor</strong> es la percepción subjetiva del cliente sobre los beneficios; el <strong>precio</strong> es el coste monetario pagado."},
+    {q:"¿Qué es el Customer Equity?",a:"La suma del <strong>valor actual de todos los clientes</strong> de una empresa durante su vida útil. Guía inversiones en relaciones."}
+  ],
+  3:[
+    {q:"¿Qué es un SIM?",a:"<strong>Sistema de Información de Marketing</strong>: recopila, analiza y distribuye información continua para apoyar decisiones estratégicas y tácticas."},
+    {q:"¿Cuáles son los 3 pilares del SIM?",a:"<strong>1) Registros internos</strong> · <strong>2) Inteligencia de marketing</strong> (entorno) · <strong>3) Investigación de mercados</strong> (proyectos específicos)"},
+    {q:"¿Qué es el Big Data en marketing?",a:"Datos de <strong>gran volumen, velocidad y variedad</strong> que permiten identificar patrones de comportamiento del consumidor en tiempo real."},
+    {q:"¿Qué son los datos primarios?",a:"Información <strong>recogida directamente para un objetivo específico</strong> mediante encuestas, entrevistas, observación o experimentos."},
+    {q:"¿Qué es la analítica predictiva?",a:"Uso de <strong>modelos estadísticos e IA</strong> para anticipar comportamientos futuros del consumidor y optimizar acciones de marketing."}
+  ],
+  4:[
+    {q:"¿Cuál es el primer paso de la investigación comercial?",a:"<strong>Definir el problema y los objetivos</strong>. Un problema mal definido lleva a una investigación que no responde la pregunta correcta."},
+    {q:"¿Diferencia entre investigación cualitativa y cuantitativa?",a:"<strong>Cualitativa:</strong> explora motivaciones (focus groups). <strong>Cuantitativa:</strong> mide y generaliza con estadística (encuestas, experimentos)."},
+    {q:"¿Qué es el muestreo aleatorio simple?",a:"Técnica donde <strong>cada miembro</strong> de la población tiene la <strong>misma probabilidad</strong> de ser seleccionado, garantizando representatividad."},
+    {q:"¿Qué es un focus group?",a:"Sesión cualitativa con <strong>6-10 personas</strong> moderadas por un experto para explorar percepciones y actitudes en profundidad."},
+    {q:"¿Qué es el Net Promoter Score (NPS)?",a:"<strong>% Promotores (9-10) − % Detractores (0-6)</strong>. Métrica de lealtad e indicador líder de crecimiento orgánico."}
+  ],
+  5:[
+    {q:"¿Cuáles son las 4 variables de segmentación?",a:"<strong>Geográfica</strong> · <strong>Demográfica</strong> · <strong>Psicográfica</strong> (estilo de vida) · <strong>Conductual</strong> (uso, lealtad)"},
+    {q:"¿Qué es el posicionamiento de marca?",a:"El lugar <strong>distinto, deseable y memorable</strong> que una marca ocupa en la mente del consumidor objetivo respecto a la competencia."},
+    {q:"¿Qué es el targeting?",a:"Proceso de <strong>evaluar y seleccionar</strong> segmentos de mercado atractivos a los que la empresa dirige sus esfuerzos."},
+    {q:"¿Qué es el Buyer Persona?",a:"<strong>Perfil semificticio</strong> del cliente ideal basado en datos reales: demografía, motivaciones, objetivos y pain points."},
+    {q:"¿Condiciones para segmentación efectiva?",a:"Medible, <strong>accesible, sustancial, diferenciable y accionable</strong>. Si no cumple estos criterios, el segmento no es viable."}
+  ],
+  6:[
+    {q:"¿Qué es el inbound marketing?",a:"Estrategia que <strong>atrae clientes con contenido valioso</strong>. Fases: Atraer → Convertir → Cerrar → Deleitar."},
+    {q:"¿4 pilares del inbound marketing?",a:"<strong>1) Contenido</strong> relevante · <strong>2) SEO</strong> · <strong>3) Redes sociales</strong> · <strong>4) Marketing de automatización</strong>"},
+    {q:"¿Qué es el contenido Evergreen?",a:"Contenido que <strong>no caduca</strong> y mantiene su relevancia y tráfico a lo largo del tiempo. Ej: guías definitivas, definiciones."},
+    {q:"¿Diferencia entre SEO y SEM?",a:"<strong>SEO:</strong> posicionamiento orgánico gratuito a largo plazo. <strong>SEM:</strong> publicidad de pago en buscadores con resultados inmediatos."},
+    {q:"¿Qué es el Social Proof?",a:"Principio psicológico donde <strong>testimonios, reseñas y casos de éxito</strong> de otros usuarios influyen en la decisión de compra."}
+  ],
+  7:[
+    {q:"¿Qué ROI genera el email marketing?",a:"Según Litmus 2023: <strong>36-42€ por cada euro invertido</strong>, el canal digital con mayor retorno demostrado."},
+    {q:"¿Qué es la omnicanalidad?",a:"Experiencia de cliente <strong>fluida y consistente</strong> en todos los canales (físico, digital, móvil) de forma completamente integrada."},
+    {q:"¿Qué es el marketing de automatización?",a:"Uso de <strong>software para automatizar</strong> tareas repetitivas: emails, lead nurturing, segmentación y seguimiento del comportamiento."},
+    {q:"¿Cómo se calcula el CTR?",a:"<strong>CTR = Clics / Impresiones × 100</strong>. Mide el porcentaje de personas que hacen clic respecto a los que ven el anuncio."},
+    {q:"¿Qué es el lead nurturing?",a:"Proceso de <strong>cultivar prospectos</strong> con contenido relevante y personalizado hasta que están listos para comprar."}
+  ],
+  8:[
+    {q:"¿Qué es la cadena de valor de Porter?",a:"Modelo que identifica <strong>actividades primarias y de apoyo</strong> de una empresa que crean valor para el cliente y ventaja competitiva."},
+    {q:"¿Cuáles son las 3 estrategias genéricas de Porter?",a:"<strong>1) Liderazgo en costes</strong> · <strong>2) Diferenciación</strong> · <strong>3) Enfoque/Nicho</strong>. Cada empresa debe elegir una."},
+    {q:"¿Qué es el análisis DAFO?",a:"Evalúa <strong>Debilidades y Fortalezas</strong> internas + <strong>Amenazas y Oportunidades</strong> externas para orientar la estrategia."},
+    {q:"¿Qué es la ventaja competitiva sostenible?",a:"Característica que permite <strong>superar al competidor de forma duradera</strong>: difícil de imitar, valiosa y escasa en el mercado."},
+    {q:"¿Qué es el benchmarking?",a:"Comparar <strong>procesos y métricas</strong> de la empresa con los mejores del sector para identificar mejoras y adoptar buenas prácticas."}
+  ],
+  9:[
+    {q:"¿Qué es un plan de marketing?",a:"Documento que define <strong>análisis, objetivos SMART, estrategias, planes de acción y control</strong> para un periodo determinado."},
+    {q:"¿Qué significa SMART en objetivos?",a:"<strong>S</strong>pecific · <strong>M</strong>easurable · <strong>A</strong>chievable · <strong>R</strong>elevant · <strong>T</strong>ime-bound (con plazo definido)"},
+    {q:"¿Cuáles son las 4 estrategias de Ansoff?",a:"<strong>1)</strong> Penetración de mercado · <strong>2)</strong> Desarrollo de mercados · <strong>3)</strong> Desarrollo de productos · <strong>4)</strong> Diversificación"},
+    {q:"¿Qué es un KPI en marketing?",a:"<strong>Key Performance Indicator</strong>: métrica clave cuantificable que mide el progreso hacia un objetivo de marketing."},
+    {q:"¿Qué % de estrategias se ejecutan efectivamente según HBR?",a:"Solo el <strong>10%</strong> de las estrategias bien formuladas se ejecutan de forma efectiva (Harvard Business Review, 2023)."}
+  ]
+};
+const GLOS=[
+  {t:"Marketing Mix (4Ps)",d:"Conjunto de herramientas controlables: Producto, Precio, Plaza y Promoción que la empresa combina para producir la respuesta deseada en el mercado objetivo.",s:"McCarthy, 1960",c:"T1",col:"#e8b94a"},
+  {t:"Propuesta de Valor",d:"Conjunto de beneficios únicos que una empresa promete entregar a sus clientes para satisfacer sus necesidades mejor que la competencia.",s:"Kotler & Armstrong",c:"T1",col:"#e8b94a"},
+  {t:"Marketing 4.0",d:"Enfoque que integra la interacción online y offline, guiando al consumidor desde el conocimiento de la marca hasta la recomendación activa.",s:"Kotler, Kartajaya & Setiawan",c:"T1",col:"#e8b94a"},
+  {t:"Orientación al Mercado",d:"Filosofía empresarial donde todas las actividades y decisiones giran en torno a entender y satisfacer al cliente mejor que la competencia.",s:"Kohli & Jaworski, 1990",c:"T1",col:"#e8b94a"},
+  {t:"Precio Psicológico",d:"Estrategia de fijación de precios basada en la percepción del consumidor. Ejemplo: 9,99€ vs 10€. Influye significativamente en la decisión de compra.",s:"Pricing Strategy",c:"T1",col:"#e8b94a"},
+  {t:"Customer Lifetime Value (CLV)",d:"Valor total que un cliente aporta a la empresa durante toda su relación. CLV = Valor medio × Frecuencia anual × Años de relación.",s:"Kotler, 2016",c:"T2",col:"#4ec9b0"},
+  {t:"Customer Equity",d:"Suma del valor actual de todos los clientes de una empresa durante su vida útil. Guía las decisiones de inversión en relaciones con clientes.",s:"Rust, Zeithaml & Lemon",c:"T2",col:"#4ec9b0"},
+  {t:"Fidelización",d:"Estrategia orientada a retener clientes existentes mediante la creación de valor continuo, programas de lealtad y experiencias superiores.",s:"Reichheld & Sasser",c:"T2",col:"#4ec9b0"},
+  {t:"SIM (Sistema de Información de Marketing)",d:"Sistema integrado que recopila, analiza y distribuye información continua para apoyar las decisiones de marketing estratégico y táctico.",s:"Kotler, 2019",c:"T3",col:"#2ec4b6"},
+  {t:"Big Data",d:"Conjuntos de datos de gran volumen, velocidad y variedad que permiten identificar patrones de comportamiento y optimizar decisiones de marketing.",s:"IBM Institute, 2023",c:"T3",col:"#2ec4b6"},
+  {t:"Analítica Predictiva",d:"Uso de modelos estadísticos e inteligencia artificial para anticipar comportamientos futuros del consumidor y optimizar acciones de marketing.",s:"McKinsey Global Institute",c:"T3",col:"#2ec4b6"},
+  {t:"Datos Primarios",d:"Información recogida directamente para un objetivo específico mediante encuestas, entrevistas, observación o experimentos diseñados ad hoc.",s:"Malhotra, 2020",c:"T4",col:"#9b6dff"},
+  {t:"Net Promoter Score (NPS)",d:"Métrica de lealtad: % Promotores (9-10) menos % Detractores (0-6). Indicador líder de crecimiento orgánico y satisfacción del cliente.",s:"Reichheld, Bain & Co.",c:"T4",col:"#9b6dff"},
+  {t:"Focus Group",d:"Técnica cualitativa con 6-10 participantes moderados por un experto para explorar percepciones, actitudes y motivaciones en profundidad.",s:"Morgan, 1997",c:"T4",col:"#9b6dff"},
+  {t:"Muestreo Aleatorio",d:"Técnica donde cada miembro de la población tiene la misma probabilidad de ser seleccionado, garantizando representatividad estadística.",s:"Malhotra & Birks",c:"T4",col:"#9b6dff"},
+  {t:"Segmentación de Mercados",d:"División del mercado heterogéneo en grupos homogéneos con necesidades similares para diseñar estrategias de marketing más efectivas.",s:"Smith, 1956",c:"T5",col:"#e85d5d"},
+  {t:"Buyer Persona",d:"Perfil semificticio del cliente ideal basado en datos reales: demografía, motivaciones, objetivos, pain points y comportamiento de compra.",s:"HubSpot, 2023",c:"T5",col:"#e85d5d"},
+  {t:"Posicionamiento",d:"Lugar distinto, deseable y memorable que una marca ocupa en la mente del consumidor objetivo respecto a la competencia.",s:"Ries & Trout, 1981",c:"T5",col:"#e85d5d"},
+  {t:"STP (Segmenting-Targeting-Positioning)",d:"Proceso estratégico: Segmentar el mercado → Seleccionar el target → Posicionar la oferta en la mente del consumidor objetivo.",s:"Kotler & Keller, 2016",c:"T5",col:"#e85d5d"},
+  {t:"Inbound Marketing",d:"Estrategia que atrae clientes con contenido valioso y relevante en lugar de interrumpir. Fases: Atraer → Convertir → Cerrar → Deleitar.",s:"HubSpot, 2006",c:"T6",col:"#f4a261"},
+  {t:"Content Marketing",d:"Creación y distribución de contenido valioso, relevante y consistente para atraer audiencias definidas y generar acción rentable.",s:"Content Marketing Institute",c:"T6",col:"#f4a261"},
+  {t:"SEO (Search Engine Optimization)",d:"Conjunto de técnicas para mejorar la visibilidad orgánica de un sitio web en los motores de búsqueda sin coste por clic directo.",s:"MOZ, 2024",c:"T6",col:"#f4a261"},
+  {t:"Contenido Evergreen",d:"Contenido que no caduca y mantiene su relevancia y tráfico a lo largo del tiempo. Ejemplos: guías definitivas, tutoriales, definiciones.",s:"MOZ Blog, 2023",c:"T6",col:"#f4a261"},
+  {t:"Social Proof",d:"Principio psicológico donde los testimonios, reseñas y casos de éxito de otros usuarios influyen en la decisión de compra de nuevos clientes.",s:"Cialdini, Influence, 1984",c:"T6",col:"#f4a261"},
+  {t:"Embudo de Conversión",d:"Modelo del viaje del cliente desde el conocimiento de la marca hasta la compra: Conciencia → Interés → Deseo → Acción (modelo AIDA).",s:"Lewis, AIDA, 1898",c:"T6",col:"#f4a261"},
+  {t:"Omnicanalidad",d:"Estrategia que ofrece una experiencia de cliente fluida y consistente en todos los canales (físico, digital, móvil) de forma completamente integrada.",s:"Harvard Business Review, 2017",c:"T7",col:"#4dba74"},
+  {t:"Email Marketing",d:"Canal de comunicación directa con ROI promedio de 36-42€ por euro invertido (Litmus 2023). El canal digital con mayor retorno demostrado.",s:"Litmus, 2023",c:"T7",col:"#4dba74"},
+  {t:"Marketing Automation",d:"Uso de software para automatizar tareas repetitivas de marketing: envío de emails, lead nurturing, segmentación y seguimiento del comportamiento.",s:"Marketo / HubSpot",c:"T7",col:"#4dba74"},
+  {t:"CTR (Click-Through Rate)",d:"Porcentaje de personas que hacen clic en un anuncio o enlace respecto al total que lo ven. CTR = Clics / Impresiones × 100.",s:"Google Ads Glossary",c:"T7",col:"#4dba74"},
+  {t:"Lead Nurturing",d:"Proceso de cultivar prospectos a través del funnel con contenido relevante y personalizado hasta que están listos para comprar.",s:"Marketo, 2022",c:"T7",col:"#4dba74"},
+  {t:"Análisis DAFO",d:"Herramienta estratégica que evalúa Debilidades y Fortalezas internas junto a Amenazas y Oportunidades externas para orientar la estrategia.",s:"Humphrey, Stanford, 1960s",c:"T8",col:"#e76f51"},
+  {t:"Cadena de Valor",d:"Modelo de Porter que identifica las actividades primarias y de apoyo de una empresa que crean valor para el cliente y ventaja competitiva.",s:"Porter, 1985",c:"T8",col:"#e76f51"},
+  {t:"Ventaja Competitiva Sostenible",d:"Característica que permite superar al competidor de forma duradera: difícil de imitar, valiosa para el cliente y escasa en el mercado.",s:"Porter, 1985",c:"T8",col:"#e76f51"},
+  {t:"Estrategias Genéricas de Porter",d:"Las 3 estrategias competitivas: Liderazgo en costes, Diferenciación y Enfoque/Nicho. Cada empresa debe elegir una para competir.",s:"Porter, 1980",c:"T8",col:"#e76f51"},
+  {t:"Benchmarking",d:"Proceso de comparar procesos y métricas de la propia empresa con los mejores del sector para identificar mejoras y adoptar buenas prácticas.",s:"Camp, Xerox, 1979",c:"T8",col:"#e76f51"},
+  {t:"Plan de Marketing",d:"Documento estratégico que define análisis, objetivos SMART, estrategias, planes de acción y sistema de control para un periodo determinado.",s:"Kotler & Armstrong, 2018",c:"T9",col:"#9b59b6"},
+  {t:"Objetivos SMART",d:"Marco para definir objetivos: Specific (específico), Measurable (medible), Achievable (alcanzable), Relevant (relevante), Time-bound (con plazo).",s:"Doran, 1981",c:"T9",col:"#9b59b6"},
+  {t:"Matriz de Ansoff",d:"Herramienta con 4 opciones de crecimiento: Penetración de mercado, Desarrollo de mercados, Desarrollo de productos y Diversificación.",s:"Ansoff, 1957",c:"T9",col:"#9b59b6"},
+  {t:"KPI (Key Performance Indicator)",d:"Métrica clave que mide el progreso hacia un objetivo de marketing. Debe ser cuantificable, relevante y alineada con los objetivos estratégicos.",s:"Management by Objectives",c:"T9",col:"#9b59b6"},
+  {t:"ROI (Return on Investment)",d:"Retorno sobre la inversión = (Beneficio neto / Inversión) × 100. Medida universal de eficiencia de las acciones de marketing.",s:"Standard Financial Metric",c:"T9",col:"#9b59b6"}
+];
 const TOPICS=[
   {id:1,title:"Fundamentos del Marketing",sub:"Tema 1",icon:"🎯",col:"#e8b94a",desc:"Conceptos esenciales, evolución histórica, rol estratégico y el marketing mix clásico",
    lessons:[{id:"1-1",t:"Introducción y Objetivos"},{id:"1-2",t:"El Marketing y la Creación de Valor"},{id:"1-3",t:"El Marketing en la Planificación Estratégica"},{id:"1-4",t:"El Proceso de Marketing: El Marketing Mix"},{id:"1-5",t:"La Nueva Realidad del Marketing"}],
@@ -880,7 +1034,7 @@ const TOPICS=[
    {q:"¿Qué elemento NO forma parte del plan de marketing?",o:["Análisis DAFO de la situación","Fijación de objetivos SMART","Plan general de RRHH corporativo","Definición de estrategias de marketing"],c:2,e:"El plan de RRHH general es un plan corporativo independiente. El plan de marketing incluye análisis, objetivos, estrategias, planes de acción y sistema de control."},
    {q:"¿Qué afirma Harvard Business Review sobre la ejecución de las estrategias?",o:["El 90% se ejecutan perfectamente","Solo el 10% de las estrategias bien formuladas se ejecutan efectivamente","La ejecución siempre supera al diseño estratégico","El presupuesto es el único factor de éxito"],c:1,e:"HBR estima que solo el 10% de las estrategias bien formuladas se ejecutan de forma efectiva, lo que explica por qué la excelencia en la ejecución es la ventaja competitiva más difícil de imitar."}]}
 ];
-const S={view:'dash',tid:null,lid:null,prog:{},tmsgs:[{r:'ai',c:'¡Hola! Soy tu tutor de <strong>Marketing Integral</strong>. Las lecciones del curso están basadas en el material oficial de UNIR enriquecido con fuentes externas (Kotler, HubSpot, IBM, Qualtrics, Statista). ¿En qué puedo ayudarte?'}],qs:null,tloading:false};
+const S={view:'dash',tid:null,lid:null,prog:{},tmsgs:[{r:'ai',c:'¡Hola! Soy tu tutor de <strong>Marketing Integral</strong>. Las lecciones del curso están basadas en el material oficial de UNIR enriquecido con fuentes externas (Kotler, HubSpot, IBM, Qualtrics, Statista). ¿En qué puedo ayudarte?'}],qs:null,tloading:false,fcTopic:1,fcIdx:0,fcFlipped:false,glosFilter:'all'};
 function saveProg(){try{localStorage.setItem('mi_prog3',JSON.stringify(S.prog))}catch(e){}}
 function loadProg(){try{const d=localStorage.getItem('mi_prog3');if(d)S.prog=JSON.parse(d)}catch(e){}}
 const byId=id=>TOPICS.find(t=>t.id===id);
@@ -895,13 +1049,15 @@ function quizPassed(){return TOPICS.filter(t=>getProg(t.id).qs!==null&&getProg(t
 function nav(view,tid=null,lid=null){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   S.view=view;S.tid=tid;S.lid=lid;
-  document.getElementById('v-'+{dash:'dash',topic:'topic',lesson:'lesson',quiz:'quiz',tutor:'tutor'}[view]).classList.add('active');
+  document.getElementById('v-'+{dash:'dash',topic:'topic',lesson:'lesson',quiz:'quiz',tutor:'tutor',flash:'flash',glosario:'glosario'}[view]).classList.add('active');
   document.getElementById('main').scrollTop=0;
   if(view==='dash'){bc(['Panel principal']);renderDash()}
   else if(view==='topic'){bc([`Tema ${tid}`]);renderTopic(tid)}
   else if(view==='lesson'){const t=topicByLesson(lid);bc([`Tema ${t?.id}`,lessonById(lid)?.t||'']);renderLesson(lid)}
   else if(view==='quiz'){bc([`Tema ${tid}`,'Test']);startQuiz(tid)}
   else if(view==='tutor'){bc(['Tutor IA']);setTimeout(()=>{const m=document.getElementById('msgs');if(m)m.scrollTop=m.scrollHeight},50)}
+  else if(view==='flash'){bc(['Flashcards']);renderFlash()}
+  else if(view==='glosario'){bc(['Glosario']);renderGlosario()}
   renderSb();updateProg();}
 function bc(parts){document.getElementById('bc').innerHTML='<span>Marketing Integral</span>'+parts.map(p=>`<span class="bc-sep">›</span><span class="bc-cur">${p}</span>`).join('');}
 function renderSb(){
@@ -910,6 +1066,9 @@ function renderSb(){
     <div class="ni${S.view==='dash'?' active':''}" onclick="nav('dash')"><span class="ni-icon">⊞</span><span class="ni-name">Panel principal</span></div>
     <div class="nav-lbl" style="margin-top:6px">Temario</div>
     ${TOPICS.map(t=>{const p=topicPct(t.id);return `<div class="ni${S.tid===t.id?' active':''}" onclick="nav('topic',${t.id})"><span class="ni-icon">${t.icon}</span><span class="ni-name">${t.title}</span><span class="ni-num">${p>0?p+'%':t.id}</span></div>`;}).join('')}
+    <div class="nav-lbl" style="margin-top:6px">Herramientas</div>
+    <div class="ni${S.view==='flash'?' active':''}" onclick="nav('flash')" style="color:var(--violet)"><span class="ni-icon">🃏</span><span class="ni-name">Flashcards</span><span class="ni-num" style="color:var(--violet)">45</span></div>
+    <div class="ni${S.view==='glosario'?' active':''}" onclick="nav('glosario')" style="color:var(--teal)"><span class="ni-icon">📖</span><span class="ni-name">Glosario</span><span class="ni-num" style="color:var(--teal)">38</span></div>
     <div class="ni tutor${S.view==='tutor'?' active':''}" onclick="nav('tutor')" style="border-left:none;border-top:1px solid var(--border)"><span class="ni-icon">🤖</span><span class="ni-name">Tutor de IA</span><span class="ni-ia">IA</span></div>`;}
 function updateProg(){const tot=TOPICS.reduce((a,t)=>a+t.lessons.length,0),done=totalDone(),p=Math.round(done/tot*100);document.getElementById('pct').textContent=p+'%';document.getElementById('pbar').style.width=p+'%';}
 function renderDash(){
@@ -1044,6 +1203,57 @@ function updateKeyBtn(){
   btn.style.borderColor=has?'rgba(77,186,116,.4)':'';
   btn.style.color=has?'var(--ok)':'';
 }
+function renderFlash(topic){
+  if(topic) S.fcTopic=topic;
+  S.fcIdx=0;S.fcFlipped=false;
+  const el=document.getElementById('v-flash');if(!el)return;
+  const cards=FC[S.fcTopic]||[];
+  const t=byId(S.fcTopic);
+  el.innerHTML=`<div class="fc-wrap">
+    <div class="fc-hdr"><h2 class="fc-h1">🃏 Flashcards · Marketing Integral</h2><p class="fc-sub">Haz clic en la tarjeta para ver la respuesta</p></div>
+    <div class="fc-tabs">${TOPICS.map(tp=>`<button class="fc-tab${S.fcTopic===tp.id?' active':''}" onclick="renderFlash(${tp.id})">${tp.icon} T${tp.id}</button>`).join('')}</div>
+    <div class="fc-counter" id="fc-counter">Tarjeta 1 de ${cards.length} · ${t?t.title:''}</div>
+    <div class="fc-scene" onclick="flipCard()">
+      <div class="fc-card" id="fc-card">
+        <div class="fc-face fc-front"><p class="fc-q" id="fc-q">${cards[0]?.q||''}</p><p class="fc-hint">👆 Clic para ver respuesta</p></div>
+        <div class="fc-face fc-back"><p class="fc-a" id="fc-a">${cards[0]?.a||''}</p></div>
+      </div>
+    </div>
+    <div class="fc-nav">
+      <button class="fc-btn" onclick="prevCard()">← Anterior</button>
+      <button class="fc-btn fc-flip-btn" onclick="flipCard()">↻ Girar</button>
+      <button class="fc-btn" onclick="nextCard()">Siguiente →</button>
+    </div>
+  </div>`;}
+function flipCard(){S.fcFlipped=!S.fcFlipped;const c=document.getElementById('fc-card');if(c)c.classList.toggle('flipped',S.fcFlipped);}
+function prevCard(){const cards=FC[S.fcTopic]||[];S.fcIdx=S.fcIdx>0?S.fcIdx-1:cards.length-1;S.fcFlipped=false;updateFcCard();}
+function nextCard(){const cards=FC[S.fcTopic]||[];S.fcIdx=(S.fcIdx+1)%cards.length;S.fcFlipped=false;updateFcCard();}
+function updateFcCard(){
+  const cards=FC[S.fcTopic]||[];const t=byId(S.fcTopic);
+  const c=document.getElementById('fc-card');const ctr=document.getElementById('fc-counter');
+  if(c){c.classList.remove('flipped');const fq=document.getElementById('fc-q');const fa=document.getElementById('fc-a');if(fq)fq.innerHTML=cards[S.fcIdx]?.q||'';if(fa)fa.innerHTML=cards[S.fcIdx]?.a||'';}
+  if(ctr)ctr.textContent=`Tarjeta ${S.fcIdx+1} de ${cards.length} · ${t?t.title:''}`;}
+function renderGlosario(filter){
+  if(filter!==undefined)S.glosFilter=filter;
+  const el=document.getElementById('v-glosario');if(!el)return;
+  const q=(document.getElementById('glos-q')?.value||'').toLowerCase().trim();
+  let items=GLOS;
+  if(S.glosFilter&&S.glosFilter!=='all')items=items.filter(g=>g.c===S.glosFilter);
+  if(q)items=items.filter(g=>g.t.toLowerCase().includes(q)||g.d.toLowerCase().includes(q));
+  el.innerHTML=`<div class="glos-wrap">
+    <div class="glos-hdr">
+      <h2 class="glos-h1">📖 Glosario · Marketing Integral</h2>
+      <p class="glos-sub">${GLOS.length} términos clave del curso extraídos del libro UNIR y fuentes académicas</p>
+      <div class="glos-ctrl"><input class="glos-search" id="glos-q" placeholder="Buscar término o definición..." value="${q}" oninput="filterGlos()"></div>
+      <div class="glos-filter">
+        <button class="gf-btn${!S.glosFilter||S.glosFilter==='all'?' active':''}" onclick="renderGlosario('all')">Todos</button>
+        ${TOPICS.map(tp=>`<button class="gf-btn${S.glosFilter===('T'+tp.id)?' active':''}" onclick="renderGlosario('T${tp.id}')">${tp.icon} T${tp.id}</button>`).join('')}
+      </div>
+      <p class="glos-count">${items.length} término${items.length!==1?'s':''} encontrado${items.length!==1?'s':''}</p>
+    </div>
+    <div class="glos-grid">${items.map(g=>`<div class="glos-card" style="--gcol:${g.col}"><div class="glos-term">${g.t}</div><div class="glos-def">${g.d}</div><div class="glos-foot"><span class="glos-src">${g.s}</span><span class="glos-tag" style="background:${g.col}22;color:${g.col}">${g.c}</span></div></div>`).join('')}
+    </div></div>`;}
+function filterGlos(){renderGlosario();}
 function toast(msg,type='info'){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast ${type}`;void t.offsetWidth;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 function init(){loadProg();renderSb();updateProg();renderDash();const m=document.getElementById('msgs');if(m){m.innerHTML='';appendMsg('ai',S.tmsgs[0].c,true)}updateKeyBtn();}
 init();
