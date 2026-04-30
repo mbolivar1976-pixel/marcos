@@ -60,7 +60,7 @@ para todo el proyecto. Define roles, protocolo de deployment y registro de tópi
 
 | ID | Nombre | Área | Estado | Fecha deploy | Commit |
 |---|---|---|---|---|---|
-| T-001 | Estructura base y prompt de deployment | Arquitectura | ✅ DEPLOYED | 2026-04-30 | — |
+| T-001 | Estructura base y prompt de deployment | Arquitectura | ✅ DEPLOYED | 2026-04-30 | `3c90c57` |
 | T-002 | _(próximo tópico — ver sección BACKLOG)_ | — | 🔜 PENDING | — | — |
 
 ---
