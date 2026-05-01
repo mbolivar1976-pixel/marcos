@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de Gestión y Presupuestario · LMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/lms.css" />
+</head>
+<body>
+
+<!-- ── SIDEBAR ─────────────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">CG</div>
+    <div>
+      <p class="brand-title">Control de Gestión</p>
+      <p class="brand-sub">y Presupuestario · UNIR</p>
+    </div>
+  </div>
+
+  <div class="sidebar-progress">
+    <div class="progress-label">
+      <span>Progreso del curso</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-bar"></div></div>
+  </div>
+
+  <nav class="sidebar-nav" id="sidebar-nav">
+    <!-- Se inyecta dinámicamente por lms.js -->
+  </nav>
+
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Colapsar menú">&#8592;</button>
+</aside>
+
+<!-- ── MAIN ────────────────────────────────────────────────────────── -->
+<main class="main" id="main">
+
+  <header class="topbar">
+    <button class="topbar-menu" id="topbar-menu" aria-label="Abrir menú">&#9776;</button>
+    <div class="topbar-breadcrumb" id="breadcrumb">Inicio</div>
+    <div class="topbar-actions">
+      <button class="btn-icon" id="theme-toggle" title="Cambiar tema">&#9790;</button>
+    </div>
+  </header>
+
+  <div class="content-area" id="content-area">
+
+    <!-- HOME / PORTADA -->
+    <section class="hero" id="home-section">
+      <div class="hero-badge">Bloque I · Gestión Analítica</div>
+      <h1 class="hero-title">Control de Gestión<br><span>y Presupuestario</span></h1>
+      <p class="hero-desc">
+        Domina las herramientas clave del management financiero: desde el análisis
+        del balance hasta el forecasting rolling y el cuadro de mando integral.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-n" id="stat-temas">4</span><span class="stat-l">Temas</span></div>
+        <div class="stat"><span class="stat-n" id="stat-lecciones">16</span><span class="stat-l">Lecciones</span></div>
+        <div class="stat"><span class="stat-n">UNIR</span><span class="stat-l">Universidad</span></div>
+      </div>
+      <button class="btn-primary" onclick="LMS.goToFirstLesson()">Comenzar ahora &rarr;</button>
+    </section>
+
+    <!-- CONTENIDO DE LECCIÓN (se carga dinámicamente) -->
+    <section class="lesson-section hidden" id="lesson-section">
+      <div class="lesson-header">
+        <div class="lesson-meta" id="lesson-meta"></div>
+        <h1 class="lesson-title" id="lesson-title"></h1>
+      </div>
+      <div class="lesson-body" id="lesson-body"></div>
+      <div class="lesson-nav-btns">
+        <button class="btn-secondary" id="btn-prev" onclick="LMS.prevLesson()">&#8592; Anterior</button>
+        <button class="btn-primary" id="btn-next" onclick="LMS.nextLesson()">Siguiente &rarr;</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="js/lms.js"></script>
+</body>
+</html>

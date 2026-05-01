@@ -1,1 +1,18 @@
-TOPICS = []
+TOPICS = [
+    {'tema': 1, 'leccion': 1, 'titulo': 'El Balance: Concepto y Estructura', 'archivo': 'lessons/tema1/leccion1.html'},
+    {'tema': 1, 'leccion': 2, 'titulo': 'Análisis del Activo y del Pasivo', 'archivo': 'lessons/tema1/leccion2.html'},
+    {'tema': 1, 'leccion': 3, 'titulo': 'Equilibrio Patrimonial y Tipos de Empresa', 'archivo': 'lessons/tema1/leccion3.html'},
+    {'tema': 1, 'leccion': 4, 'titulo': 'Ratios y Diagnóstico Financiero', 'archivo': 'lessons/tema1/leccion4.html'},
+    {'tema': 2, 'leccion': 1, 'titulo': 'Contabilidad Financiera vs. Analítica', 'archivo': 'lessons/tema2/leccion1.html'},
+    {'tema': 2, 'leccion': 2, 'titulo': 'Estado de Resultados y Costes', 'archivo': 'lessons/tema2/leccion2.html'},
+    {'tema': 2, 'leccion': 3, 'titulo': 'Resultado Analítico y Marginalidad', 'archivo': 'lessons/tema2/leccion3.html'},
+    {'tema': 2, 'leccion': 4, 'titulo': 'El BAT y Análisis de Rentabilidad', 'archivo': 'lessons/tema2/leccion4.html'},
+    {'tema': 3, 'leccion': 1, 'titulo': 'Tipos de Costes y Contabilidad Analítica', 'archivo': 'lessons/tema3/leccion1.html'},
+    {'tema': 3, 'leccion': 2, 'titulo': 'Full Cost, Direct Costing e Histórico', 'archivo': 'lessons/tema3/leccion2.html'},
+    {'tema': 3, 'leccion': 3, 'titulo': 'Costes Estándar y ABC', 'archivo': 'lessons/tema3/leccion3.html'},
+    {'tema': 3, 'leccion': 4, 'titulo': 'Punto Muerto y Umbral de Rentabilidad', 'archivo': 'lessons/tema3/leccion4.html'},
+    {'tema': 4, 'leccion': 1, 'titulo': 'Planificación y Alineamiento Estratégico', 'archivo': 'lessons/tema4/leccion1.html'},
+    {'tema': 4, 'leccion': 2, 'titulo': 'Fases, Tipos y Seguimiento Presupuestario', 'archivo': 'lessons/tema4/leccion2.html'},
+    {'tema': 4, 'leccion': 3, 'titulo': 'Planning Presupuestario y Sistemas (ZBB, ABB)', 'archivo': 'lessons/tema4/leccion3.html'},
+    {'tema': 4, 'leccion': 4, 'titulo': 'Forecasting, Rolling Forecast y Presupuesto Flexible', 'archivo': 'lessons/tema4/leccion4.html'},
+]
